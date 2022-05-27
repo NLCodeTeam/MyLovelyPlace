@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyLovelyPlace</string>
+    <string name="title_home">Главная</string>
+    <string name="title_places">Места</string>
+    <string name="title_favorite">Избранное</string>
+    <string name="title_notifications">События</string>
+</resources>

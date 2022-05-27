@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation android:id="@+id/mobile_navigation"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="ru.nlct.mylovelyplace.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/navigation_place"
+        android:name="ru.nlct.mylovelyplace.ui.places.PlaceFragment"
+        android:label="@string/title_places"
+        tools:layout="@layout/fragment_place" />
+
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="ru.nlct.mylovelyplace.ui.favorites.FavoriteFragment"
+        android:label="@string/title_favorite"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="ru.nlct.mylovelyplace.ui.notifications.NotificationFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>
