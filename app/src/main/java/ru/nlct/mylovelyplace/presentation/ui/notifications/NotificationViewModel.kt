@@ -1,4 +1,4 @@
-package ru.nlct.mylovelyplace.ui.notifications
+package ru.nlct.mylovelyplace.presentation.ui.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="ru.nlct.mylovelyplace.ui.home.HomeFragment"
+        android:name="ru.nlct.mylovelyplace.presentation.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_place"
-        android:name="ru.nlct.mylovelyplace.ui.places.PlaceFragment"
+        android:name="ru.nlct.mylovelyplace.presentation.ui.places.PlaceFragment"
         android:label="@string/title_places"
         tools:layout="@layout/fragment_place" />
 
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="ru.nlct.mylovelyplace.ui.favorites.FavoriteFragment"
+        android:name="ru.nlct.mylovelyplace.presentation.ui.favorites.FavoriteFragment"
         android:label="@string/title_favorite"
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="ru.nlct.mylovelyplace.ui.notifications.NotificationFragment"
+        android:name="ru.nlct.mylovelyplace.presentation.ui.notifications.NotificationFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

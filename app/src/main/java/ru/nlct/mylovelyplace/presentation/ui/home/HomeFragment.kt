@@ -1,4 +1,4 @@
-package ru.nlct.mylovelyplace.ui.places
+package ru.nlct.mylovelyplace.presentation.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import ru.nlct.mylovelyplace.databinding.FragmentNotificationsBinding
-import ru.nlct.mylovelyplace.databinding.FragmentPlaceBinding
+import ru.nlct.mylovelyplace.databinding.FragmentHomeBinding
 
-class PlaceFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private var _binding: FragmentPlaceBinding? = null
+    private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,14 +22,14 @@ class PlaceFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val placeViewModel =
-            ViewModelProvider(this).get(PlaceViewModel::class.java)
+        val homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        _binding = FragmentPlaceBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textPlace
-        placeViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textHome
+        homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

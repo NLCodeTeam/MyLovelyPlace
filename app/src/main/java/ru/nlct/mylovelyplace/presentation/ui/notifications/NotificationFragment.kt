@@ -1,4 +1,4 @@
-package ru.nlct.mylovelyplace.ui.favorites
+package ru.nlct.mylovelyplace.presentation.ui.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import ru.nlct.mylovelyplace.databinding.FragmentFavoriteBinding
+import ru.nlct.mylovelyplace.databinding.FragmentNotificationsBinding
 
-class FavoriteFragment : Fragment() {
+class NotificationFragment : Fragment() {
 
-    private var _binding: FragmentFavoriteBinding? = null
+    private var _binding: FragmentNotificationsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class FavoriteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(FavoriteViewModel::class.java)
+        val notificationsViewModel =
+            ViewModelProvider(this).get(NotificationViewModel::class.java)
 
-        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textNotifications
+        notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
