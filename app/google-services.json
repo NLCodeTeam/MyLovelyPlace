@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "617636356975",
+    "project_id": "mylovelyplace-61145",
+    "storage_bucket": "mylovelyplace-61145.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617636356975:android:301760e20ecd109546be9a",
+        "android_client_info": {
+          "package_name": "ru.nlct.mylovelyplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617636356975-dlsp9b9vn1sr21077cmqri87miamh2jk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.nlct.mylovelyplace",
+            "certificate_hash": "7fd02eec7729bb6b0ca3c914e7cf1ca11f3d3972"
+          }
+        },
+        {
+          "client_id": "617636356975-nbg51e8h3rc5fdi4p794nf0q1ib4hf2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABf20SlPBBJdLcAYb9Y9wfmkWHNhMYwAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617636356975-nbg51e8h3rc5fdi4p794nf0q1ib4hf2s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
