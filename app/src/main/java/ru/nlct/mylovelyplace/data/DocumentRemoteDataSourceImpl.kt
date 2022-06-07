@@ -14,35 +14,19 @@ internal class DocumentRemoteDataSourceImpl : DocumentRemoteDataSource {
         collectionName: String,
         documentData: HashMap<String, Any>
     ): String {
-        return try {
-            val documentId = db.collection(collectionName).add(documentData).await().id
-            documentId
-        } catch (e: Exception) {
-            ""
-        }
-
+        return db.collection(collectionName).add(documentData).await().id
     }
 
     override suspend fun updateDocument(
         collectionName: String,
         documentId: String,
         newDocumentData: HashMap<String, Any>
-    ): Boolean {
-        return try {
-            db.collection(collectionName).document(documentId).set(newDocumentData).await()
-            true
-        } catch (e: Exception) {
-            false
-        }
+    ) {
+        db.collection(collectionName).document(documentId).set(newDocumentData).await()
     }
 
-    override suspend fun deleteDocument(collectionName: String, documentId: String): Boolean {
-        return try {
-            db.collection(collectionName).document(documentId).delete().await()
-            true
-        } catch (e: Exception) {
-            false
-        }
+    override suspend fun deleteDocument(collectionName: String, documentId: String) {
+        db.collection(collectionName).document(documentId).delete().await()
     }
 
     override suspend fun getDocumentById(collectionName: String, documentId: String): Any {
