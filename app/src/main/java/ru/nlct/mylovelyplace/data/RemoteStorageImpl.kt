@@ -9,9 +9,10 @@ internal class RemoteStorageImpl : RemoteStorage{
 
     private val dbStorage = Firebase.storage
 
-    override suspend fun addFile(fileReference: String, uri: Uri) {
+    override suspend fun addFile(fileReference: String, uri: Uri): Uri {
         with (dbStorage.reference) {
             child(fileReference).putFile(uri).await()
+            return child(fileReference).downloadUrl.await()
         }
     }
 
