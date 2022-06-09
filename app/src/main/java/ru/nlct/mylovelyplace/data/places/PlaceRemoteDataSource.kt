@@ -1,11 +1,13 @@
 package ru.nlct.mylovelyplace.data.places
 
+import ru.nlct.mylovelyplace.domain.places.Place
+
 interface PlaceRemoteDataSource {
 
-    suspend fun addPlace(newPlace: Place): String
-    suspend fun updatePlace(place: Place)
+    suspend fun addPlace(newPlace: PlaceData): String
+    suspend fun updatePlace(placeId: String, newPlaceData: PlaceData)
     suspend fun deletePlace(placeId: String)
-    suspend fun getPlaces(): List<PlaceShort>
-    suspend fun getPlaceById(placeId: String): Place
+    suspend fun getPlaces(): List<Place>
+    suspend fun getPlaceById(placeId: String): Place?
 
 }

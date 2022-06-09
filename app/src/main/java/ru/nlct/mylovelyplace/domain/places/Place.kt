@@ -1,4 +1,4 @@
-package ru.nlct.mylovelyplace.data.places
+package ru.nlct.mylovelyplace.domain.places
 
 data class Place(
     val id: String,

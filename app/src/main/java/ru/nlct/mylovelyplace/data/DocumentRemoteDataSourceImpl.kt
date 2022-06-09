@@ -29,7 +29,7 @@ internal class DocumentRemoteDataSourceImpl : DocumentRemoteDataSource {
         db.collection(collectionName).document(documentId).delete().await()
     }
 
-    override suspend fun getDocumentById(collectionName: String, documentId: String): Any {
+    override suspend fun getDocumentById(collectionName: String, documentId: String): DocumentSnapshot {
         return db.collection(collectionName).document(documentId).get().await()
     }
 
