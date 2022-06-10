@@ -8,6 +8,6 @@ interface PlaceRemoteDataSource {
     suspend fun updatePlace(placeId: String, newPlaceData: PlaceData)
     suspend fun deletePlace(placeId: String)
     suspend fun getPlaces(): List<Place>
-    suspend fun getPlaceById(placeId: String): Place?
+    suspend fun getPlaceById(placeId: String): Place
 
 }

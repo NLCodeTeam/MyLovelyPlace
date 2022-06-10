@@ -9,16 +9,16 @@ internal class RemoteStorageImpl : RemoteStorage{
 
     private val dbStorage = Firebase.storage
 
-    override suspend fun addFile(fileReference: String, uri: Uri): Uri {
+    override suspend fun addFile(fileId: String, uri: Uri): Uri {
         with (dbStorage.reference) {
-            child(fileReference).putFile(uri).await()
-            return child(fileReference).downloadUrl.await()
+            child(fileId).putFile(uri).await()
+            return child(fileId).downloadUrl.await()
         }
     }
 
-    override suspend fun deleteFile(fileReference: String) {
+    override suspend fun deleteFile(fileId: String) {
         with(dbStorage.reference) {
-            child(fileReference).delete().await()
+            child(fileId).delete().await()
         }
     }
 }

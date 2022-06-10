@@ -1,11 +1,14 @@
 package ru.nlct.mylovelyplace.data.places
 
+import com.google.firebase.firestore.DocumentSnapshot
 import ru.nlct.mylovelyplace.data.Consts
 import ru.nlct.mylovelyplace.data.DocumentRemoteDataSource
 import ru.nlct.mylovelyplace.domain.places.Place
 
-class PlaceRemoteDataSourceImpl(
+internal class PlaceRemoteDataSourceImpl(
+
     private val documentRemoteDataSource: DocumentRemoteDataSource
+
 ) : PlaceRemoteDataSource {
 
     override suspend fun addPlace(newPlace: PlaceData): String {
@@ -29,12 +32,13 @@ class PlaceRemoteDataSourceImpl(
     override suspend fun getPlaces(): List<Place> {
 
         val resultCollection = documentRemoteDataSource.getCollection(Consts.COLL_PLACES)
-        return resultCollection.mapNotNull { documentSnapshot ->  documentSnapshot.toObject(Place::class.java) }
+        return resultCollection.map { documentSnapshot ->  documentPlaceToPlace(documentSnapshot) }
 
     }
 
-    override suspend fun getPlaceById(placeId: String): Place? {
-        return documentRemoteDataSource.getDocumentById(Consts.COLL_PLACES, placeId).toObject(Place::class.java)
+    override suspend fun getPlaceById(placeId: String): Place {
+        val documentPlace = documentRemoteDataSource.getDocumentById(Consts.COLL_PLACES, placeId)
+        return documentPlaceToPlace(documentPlace)
     }
 
     private fun placeDataToHashMap(place: PlaceData): HashMap<String, Any> {
@@ -49,7 +53,14 @@ class PlaceRemoteDataSourceImpl(
         return resultMap
     }
 
-    private fun placeDataToPlace() {
-
+    private fun documentPlaceToPlace(document: DocumentSnapshot): Place {
+        return Place(
+            document.id,
+            document.data!![Consts.FIELD_IMAGELINK] as String,
+            document.data!![Consts.FIELD_LATITUDE] as Double,
+            document.data!![Consts.FIELD_LONGITUDE] as Double,
+            document.data!![Consts.FIELD_TITLE] as String,
+            document.data!![Consts.FIELD_CONTENT] as String
+        )
     }
 }
