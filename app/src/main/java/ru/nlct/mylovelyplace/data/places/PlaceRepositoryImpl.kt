@@ -1,54 +1,68 @@
 package ru.nlct.mylovelyplace.data.places
 
 import android.net.Uri
-import ru.nlct.mylovelyplace.data.RemoteStorage
+import com.google.firebase.firestore.DocumentSnapshot
+import ru.nlct.mylovelyplace.data.Consts
+import ru.nlct.mylovelyplace.data.datasource.RemoteDataSource
 import ru.nlct.mylovelyplace.domain.places.Place
 import ru.nlct.mylovelyplace.domain.places.PlaceRepository
 
 class PlaceRepositoryImpl(
 
-    private val placeRemoteDataSource: PlaceRemoteDataSource,
-    private val remoteStorage: RemoteStorage
+    private val remoteDataSource: RemoteDataSource
 
 ) : PlaceRepository {
 
-    override suspend fun getPlaceById(placeId: String): Place {
-        return placeRemoteDataSource.getPlaceById(placeId)
+    override suspend fun getPlaceByIdRemote(placeId: String): Place {
+        val place = remoteDataSource.getDocumentById(Consts.COLL_PLACES, placeId)
+        return documentSnapshotToPlace(place)
     }
 
-    override suspend fun addPlace(newPlace: Place, placeImageUri: Uri): String {
-        val newPlaceData = placeToPlaceData(newPlace)
-        val placeId = placeRemoteDataSource.addPlace(newPlaceData)
-        remoteStorage.addFile(placeId, placeImageUri)
+    override suspend fun addPlaceRemote(newPlace: Place, placeImageUri: Uri): String {
+        val newPlaceMap = placeToMap(newPlace)
+        val placeId = remoteDataSource.addDocument(Consts.COLL_PLACES, newPlaceMap)
+        remoteDataSource.addFile(placeId, placeImageUri)
         return placeId
     }
 
-    override suspend fun deletePlace(placeId: String) {
-        placeRemoteDataSource.deletePlace(placeId)
-        remoteStorage.deleteFile(placeId)
+    override suspend fun deletePlaceRemote(placeId: String) {
+        remoteDataSource.deleteDocument(Consts.COLL_PLACES, placeId)
+        remoteDataSource.deleteFile(placeId)
     }
 
-    override suspend fun updatePlace(place: Place) {
-        val newPlaceData = placeToPlaceData(place)
-        placeRemoteDataSource.updatePlace(place.id, newPlaceData)
+    override suspend fun updatePlaceRemote(place: Place) {
+        val newPlaceMap = placeToMap(place)
+        remoteDataSource.updateDocument(Consts.COLL_PLACES, place.id, newPlaceMap)
     }
 
-    override suspend fun changePlaceImage(placeId: String, newImageUri: Uri) {
-        remoteStorage.deleteFile(placeId)
-        remoteStorage.addFile(placeId, newImageUri)
+    override suspend fun changePlaceImageRemote(placeId: String, newImageUri: Uri) {
+        remoteDataSource.deleteFile(placeId)
+        remoteDataSource.addFile(placeId, newImageUri)
     }
 
-    override suspend fun getPlaces(): List<Place> {
-        return placeRemoteDataSource.getPlaces()
+    override suspend fun getPlacesRemote(): List<Place> {
+        return remoteDataSource.getCollection(Consts.COLL_PLACES)
+            .map { documentSnapshot ->  documentSnapshotToPlace(documentSnapshot)}
     }
 
-    private fun placeToPlaceData(place: Place): PlaceData {
-        return PlaceData(
-            place.imageLink,
-            place.latitude,
-            place.longitude,
-            place.title,
-            place.content
+    private fun placeToMap(place: Place): Map<String, Any> {
+        return mapOf(
+            Consts.FIELD_IMAGELINK to place.imageLink,
+            Consts.FIELD_LATITUDE to place.latitude,
+            Consts.FIELD_LONGITUDE to place.longitude,
+            Consts.FIELD_TITLE to place.title,
+            Consts.FIELD_CONTENT to place.content
+        )
+    }
+
+    private fun documentSnapshotToPlace(document: DocumentSnapshot): Place {
+        return Place(
+            document.id,
+            document.data?.get(Consts.FIELD_IMAGELINK) as String,
+            document.data?.get(Consts.FIELD_LATITUDE) as Double,
+            document.data?.get(Consts.FIELD_LONGITUDE) as Double,
+            document.data?.get(Consts.FIELD_TITLE) as String,
+            document.data?.get(Consts.FIELD_CONTENT) as String
         )
     }
 }
