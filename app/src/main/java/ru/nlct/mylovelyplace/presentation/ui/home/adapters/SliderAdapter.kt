@@ -15,7 +15,7 @@ import ru.nlct.mylovelyplace.database.entity.PlaceEntity
  */
 
 class SliderAdapter(
-    val places: MutableList<PlaceEntity>,
+    private val places: MutableList<PlaceEntity>,
     private val onItemClicked: (postId:Long) -> Unit
 ) : RecyclerView.Adapter<SliderCard>() {
 

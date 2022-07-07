@@ -18,15 +18,16 @@ import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 import ru.nlct.mylovelyplace.BaseFragment
-import ru.nlct.mylovelyplace.DatabaseConst.FirstPoint
-import ru.nlct.mylovelyplace.DatabaseConst.Zoom
-import ru.nlct.mylovelyplace.DatabaseConst.ZoomTo
+import ru.nlct.mylovelyplace.DatabaseConst.ElbrusLocation
+import ru.nlct.mylovelyplace.DatabaseConst.ZOOM
+import ru.nlct.mylovelyplace.DatabaseConst.ZOOM_TO
 import ru.nlct.mylovelyplace.R
 import ru.nlct.mylovelyplace.database.entity.PlaceEntity
 import ru.nlct.mylovelyplace.databinding.FragmentHomeBinding
 import ru.nlct.mylovelyplace.presentation.ui.home.adapters.SliderAdapter
 import ru.nlct.mylovelyplace.presentation.ui.home.cardslider.CardSliderLayoutManager
 import ru.nlct.mylovelyplace.presentation.ui.home.cardslider.CardSnapHelper
+import javax.inject.Inject
 
 /**
  * Home fragment - фрагмент для отображения главной страницы
@@ -36,7 +37,8 @@ import ru.nlct.mylovelyplace.presentation.ui.home.cardslider.CardSnapHelper
 
 class HomeFragment : BaseFragment() {
 
-    private lateinit var placeViewModel: PlaceViewModel
+    @Inject
+    lateinit var placeViewModel: PlaceViewModel
     private var _binding: FragmentHomeBinding? = null
     private lateinit var sliderAdapter: SliderAdapter
     private lateinit var recyclerView: RecyclerView
@@ -66,7 +68,7 @@ class HomeFragment : BaseFragment() {
             onCardClick(id)
         }
         initRecyclerView()
-        map = binding.map;
+        map = binding.map
 
         initMap()
         initObservers()
@@ -90,12 +92,12 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initMap() {
-        map = binding.map;
+        map = binding.map
         map.setTileSource(TileSourceFactory.MAPNIK)
         val mapController = map.controller
-        mapController.setZoom(Zoom)
-        val startPoint = FirstPoint
-        mapController.setCenter(startPoint);
+        mapController.setZoom(ZOOM)
+        val startPoint = ElbrusLocation
+        mapController.setCenter(startPoint)
         map.invalidate()
     }
 
@@ -112,7 +114,7 @@ class HomeFragment : BaseFragment() {
                     CompassOverlay(it, InternalCompassOrientationProvider(it), binding.map)
                 compassOverlay.enableCompass()
                 binding.map.overlays.add(compassOverlay)
-                binding.map.controller.zoomTo(ZoomTo)
+                binding.map.controller.zoomTo(ZOOM_TO)
                 placeViewModel.allPlaces.observe(viewLifecycleOwner, ::onActiveCardChange)
             }
             binding.map.invalidate()
@@ -137,11 +139,13 @@ class HomeFragment : BaseFragment() {
     private fun onActiveCardChange(places: List<PlaceEntity>) {
         val index = layoutManger.getActiveCardPosition()
         with(binding) {
-            map.controller.animateTo(places[index].latitude?.let {
-                places[index].longitude?.let { it1 -> GeoPoint(it, it1) }
-            })
-            placeTitle.text = places[index].title
-            placeDescription.text = places[index].content
+            with(places[index]) {
+                if (latitude != null && longitude != null) {
+                    map.controller.animateTo(GeoPoint(latitude!!, longitude!!))
+                }
+                placeTitle.text = title
+                placeDescription.text = content
+            }
         }
     }
 

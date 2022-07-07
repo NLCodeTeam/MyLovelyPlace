@@ -1,6 +1,7 @@
 package ru.nlct.mylovelyplace.presentation.ui.home.adapters
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
@@ -14,12 +15,13 @@ import ru.nlct.mylovelyplace.R
  * @author Marianna Sabanchieva
  */
 
-class SliderCard(itemView: View, context: Context) : RecyclerView.ViewHolder(itemView) {
+class SliderCard(itemView: View, cont: Context) : RecyclerView.ViewHolder(itemView) {
     private val imageView: ImageView = itemView.findViewById(R.id.image)
-    private val mctx = context
+    private val mCntx = cont
     fun setContent(@DrawableRes name: String?) {
-        val imageID: Int = mctx.resources.getIdentifier(name, "drawable", mctx.packageName)
-        imageView.load(imageID) {
+        val imagePath = mCntx.assets.open("img/$name.jpg")
+        val image = Drawable.createFromStream(imagePath, null)
+        imageView.load(image) {
             crossfade(true)
             placeholder(R.drawable.elbrus)
         }

@@ -3,13 +3,6 @@ package ru.nlct.mylovelyplace.database.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ru.nlct.mylovelyplace.DatabaseConst.CONTENT
-import ru.nlct.mylovelyplace.DatabaseConst.ID
-import ru.nlct.mylovelyplace.DatabaseConst.IMG
-import ru.nlct.mylovelyplace.DatabaseConst.LAT
-import ru.nlct.mylovelyplace.DatabaseConst.LON
-import ru.nlct.mylovelyplace.DatabaseConst.PLACE
-import ru.nlct.mylovelyplace.DatabaseConst.TITLE
 
 /**
  * Place entity - сущность базы данных
@@ -23,13 +16,23 @@ import ru.nlct.mylovelyplace.DatabaseConst.TITLE
  * @author Marianna Sabanchieva
  */
 
-@Entity(tableName = PLACE)
+@Entity(tableName = PlaceEntity.Schema.TABLE_NAME)
 data class PlaceEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = ID) val id: Long = 0,
-    @ColumnInfo(name = TITLE) val title: String = "",
-    @ColumnInfo(name = CONTENT) val content: String? = "",
-    @ColumnInfo(name = IMG) val imageLink: String? = "",
-    @ColumnInfo(name = LAT) var latitude: Double? = 0.0,
-    @ColumnInfo(name = LON) var longitude: Double? = 0.0
-)
+    @ColumnInfo(name = Schema.ID) val id: Long = 0,
+    @ColumnInfo(name = Schema.TITLE) val title: String = "",
+    @ColumnInfo(name = Schema.CONTENT) val content: String? = "",
+    @ColumnInfo(name = Schema.IMG) val imageLink: String? = "",
+    @ColumnInfo(name = Schema.LAT) var latitude: Double? = 0.0,
+    @ColumnInfo(name = Schema.LON) var longitude: Double? = 0.0
+) {
+    object Schema {
+        const val TABLE_NAME = "places"
+        const val ID = "id"
+        const val TITLE = "title"
+        const val CONTENT = "content"
+        const val IMG = "imageLink"
+        const val LAT = "lat"
+        const val LON = "lon"
+    }
+}

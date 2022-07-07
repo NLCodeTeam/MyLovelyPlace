@@ -2,8 +2,6 @@ package ru.nlct.mylovelyplace.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import ru.nlct.mylovelyplace.DatabaseConst.ID
-import ru.nlct.mylovelyplace.DatabaseConst.PLACE
 import ru.nlct.mylovelyplace.database.entity.PlaceEntity
 
 /**
@@ -14,9 +12,9 @@ import ru.nlct.mylovelyplace.database.entity.PlaceEntity
 
 @Dao
 interface Place {
-    @Query("Select * From $PLACE")
+    @Query("Select * From ${PlaceEntity.Schema.TABLE_NAME}")
     fun getAllPlaces(): List<PlaceEntity>
 
-    @Query("Select * From $PLACE WHERE $ID = :id")
+    @Query("Select * From ${PlaceEntity.Schema.TABLE_NAME} WHERE ${PlaceEntity.Schema.ID} = :id")
     fun getPlaceById(id: Long): PlaceEntity
 }
