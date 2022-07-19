@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 import ru.nlct.mylovelyplace.DatabaseConst.DATABASE_NAME
 import ru.nlct.mylovelyplace.database.PlaceDatabase
-import ru.nlct.mylovelyplace.database.dao.Place
+import ru.nlct.mylovelyplace.database.dao.PlaceDAO
 import javax.inject.Singleton
 
 /**
@@ -23,7 +23,7 @@ class AppModule {
     fun provideContext(app: Application): Context = app
 
     @Provides
-    fun provideChannelDao(appDatabase: PlaceDatabase): Place = appDatabase.place()
+    fun provideChannelDao(appDatabase: PlaceDatabase): PlaceDAO = appDatabase.place()
 
     @Provides
     @Singleton

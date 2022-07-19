@@ -1,4 +1,4 @@
-package ru.nlct.mylovelyplace.database.entity
+package ru.nlct.mylovelyplace.domain.home.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -16,15 +16,15 @@ import androidx.room.PrimaryKey
  * @author Marianna Sabanchieva
  */
 
-@Entity(tableName = PlaceEntity.Schema.TABLE_NAME)
-data class PlaceEntity(
+@Entity(tableName = Place.Schema.TABLE_NAME)
+data class Place(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = Schema.ID) val id: Long = 0,
     @ColumnInfo(name = Schema.TITLE) val title: String = "",
     @ColumnInfo(name = Schema.CONTENT) val content: String? = "",
     @ColumnInfo(name = Schema.IMG) val imageLink: String? = "",
-    @ColumnInfo(name = Schema.LAT) var latitude: Double? = 0.0,
-    @ColumnInfo(name = Schema.LON) var longitude: Double? = 0.0
+    @ColumnInfo(name = Schema.LAT) var latitude: Double = 0.0,
+    @ColumnInfo(name = Schema.LON) var longitude: Double = 0.0
 ) {
     object Schema {
         const val TABLE_NAME = "places"

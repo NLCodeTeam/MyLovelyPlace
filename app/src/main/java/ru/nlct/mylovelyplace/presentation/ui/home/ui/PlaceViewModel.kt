@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.nlct.mylovelyplace.database.entity.PlaceEntity
+import ru.nlct.mylovelyplace.domain.home.entity.Place
 import ru.nlct.mylovelyplace.domain.home.usecases.GetPlaceUseCaseImpl
 import javax.inject.Inject
 
@@ -20,8 +20,8 @@ class PlaceViewModel @Inject constructor(
     private val useCase: GetPlaceUseCaseImpl
 ) : ViewModel() {
 
-    private val _placeLoaded = MutableLiveData<List<PlaceEntity>>()
-    val allPlaces: LiveData<List<PlaceEntity>> get() = _placeLoaded
+    private val _placeLoaded = MutableLiveData<List<Place>>()
+    val allPlaces: LiveData<List<Place>> get() = _placeLoaded
 
     fun init() {
         viewModelScope.launch(Dispatchers.IO) {

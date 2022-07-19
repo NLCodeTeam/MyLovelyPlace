@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.nlct.mylovelyplace.R
-import ru.nlct.mylovelyplace.database.entity.PlaceEntity
+import ru.nlct.mylovelyplace.domain.home.entity.Place
 
 /**
  * Slider adapter - адаптер для списка предустановленных мест
@@ -15,13 +15,13 @@ import ru.nlct.mylovelyplace.database.entity.PlaceEntity
  */
 
 class SliderAdapter(
-    private val places: MutableList<PlaceEntity>,
+    private val places: MutableList<Place>,
     private val onItemClicked: (postId:Long) -> Unit
 ) : RecyclerView.Adapter<SliderCard>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderCard {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.slider_card, parent, false)
-        return SliderCard(view, parent.context)
+        return SliderCard(view)
     }
 
     override fun onBindViewHolder(holder: SliderCard, position: Int) {
@@ -31,7 +31,7 @@ class SliderAdapter(
         }
     }
 
-    fun setPlaces(placeList: List<PlaceEntity>) {
+    fun setPlaces(placeList: List<Place>) {
         if (placeList.isNotEmpty()) {
             places.clear()
             places.addAll(placeList)

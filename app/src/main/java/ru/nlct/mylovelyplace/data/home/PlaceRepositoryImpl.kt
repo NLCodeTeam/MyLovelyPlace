@@ -1,7 +1,7 @@
 package ru.nlct.mylovelyplace.data.home
 
-import ru.nlct.mylovelyplace.database.dao.Place
-import ru.nlct.mylovelyplace.database.entity.PlaceEntity
+import ru.nlct.mylovelyplace.database.dao.PlaceDAO
+import ru.nlct.mylovelyplace.domain.home.entity.Place
 import ru.nlct.mylovelyplace.domain.home.repository.PlaceRepository
 import javax.inject.Inject
 
@@ -11,7 +11,7 @@ import javax.inject.Inject
  * @author Marianna Sabanchieva
  */
 
-class PlaceRepositoryImpl @Inject constructor(private val place: Place) : PlaceRepository {
-    override fun getPlaces(): List<PlaceEntity> = place.getAllPlaces()
-    override fun getPlaceById(id: Long): PlaceEntity = place.getPlaceById(id)
+class PlaceRepositoryImpl @Inject constructor(private val place: PlaceDAO) : PlaceRepository {
+    override fun getPlaces(): List<Place> = place.getAllPlaces()
+    override fun getPlaceById(id: Long): Place = place.getPlaceById(id)
 }

@@ -1,10 +1,7 @@
 package ru.nlct.mylovelyplace.presentation.ui.home.adapters
 
-import android.content.Context
-import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
-import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.nlct.mylovelyplace.R
@@ -15,15 +12,17 @@ import ru.nlct.mylovelyplace.R
  * @author Marianna Sabanchieva
  */
 
-class SliderCard(itemView: View, cont: Context) : RecyclerView.ViewHolder(itemView) {
+class SliderCard(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val imageView: ImageView = itemView.findViewById(R.id.image)
-    private val mCntx = cont
-    fun setContent(@DrawableRes name: String?) {
-        val imagePath = mCntx.assets.open("img/$name.jpg")
-        val image = Drawable.createFromStream(imagePath, null)
+    fun setContent(name: String?) {
+        val image = ASSETS_FOLDER.plus("$name.jpg")
         imageView.load(image) {
             crossfade(true)
             placeholder(R.drawable.elbrus)
         }
+    }
+
+    companion object{
+        private const val ASSETS_FOLDER = "file:///android_asset/img/"
     }
 }

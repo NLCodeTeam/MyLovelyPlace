@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import org.osmdroid.api.IMapController
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -22,12 +20,11 @@ import ru.nlct.mylovelyplace.DatabaseConst.ElbrusLocation
 import ru.nlct.mylovelyplace.DatabaseConst.ZOOM
 import ru.nlct.mylovelyplace.DatabaseConst.ZOOM_TO
 import ru.nlct.mylovelyplace.R
-import ru.nlct.mylovelyplace.database.entity.PlaceEntity
+import ru.nlct.mylovelyplace.domain.home.entity.Place
 import ru.nlct.mylovelyplace.databinding.FragmentHomeBinding
 import ru.nlct.mylovelyplace.presentation.ui.home.adapters.SliderAdapter
 import ru.nlct.mylovelyplace.presentation.ui.home.cardslider.CardSliderLayoutManager
 import ru.nlct.mylovelyplace.presentation.ui.home.cardslider.CardSnapHelper
-import javax.inject.Inject
 
 /**
  * Home fragment - фрагмент для отображения главной страницы
@@ -37,8 +34,7 @@ import javax.inject.Inject
 
 class HomeFragment : BaseFragment() {
 
-    @Inject
-    lateinit var placeViewModel: PlaceViewModel
+    private val placeViewModel: PlaceViewModel by viewModels { factory }
     private var _binding: FragmentHomeBinding? = null
     private lateinit var sliderAdapter: SliderAdapter
     private lateinit var recyclerView: RecyclerView
@@ -61,8 +57,6 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        placeViewModel = ViewModelProvider(this, factory)[PlaceViewModel::class.java]
-
         _binding = FragmentHomeBinding.bind(view)
         sliderAdapter = SliderAdapter(mutableListOf()) { id ->
             onCardClick(id)
@@ -78,16 +72,14 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun onCardClick(id: Long) {
-        val bundle = bundleOf("place_id" to id)
-        requireActivity().findNavController(R.id.nav_host_fragment_activity_main)
-            .navigate(R.id.action_navigation_home_to_homeDetailsFragment, bundle)
+        //TODO: добавить переход на страницу с детальной информацией
     }
 
     private fun initObservers() {
         placeViewModel.allPlaces.observe(viewLifecycleOwner, ::setPlaces)
     }
 
-    private fun setPlaces(places: List<PlaceEntity>) {
+    private fun setPlaces(places: List<Place>) {
         sliderAdapter.setPlaces(places)
     }
 
@@ -136,15 +128,11 @@ class HomeFragment : BaseFragment() {
         CardSnapHelper().attachToRecyclerView(recyclerView)
     }
 
-    private fun onActiveCardChange(places: List<PlaceEntity>) {
+    private fun onActiveCardChange(places: List<Place>) {
         val index = layoutManger.getActiveCardPosition()
         with(binding) {
             with(places[index]) {
-                if (latitude != null && longitude != null) {
-                    map.controller.animateTo(GeoPoint(latitude!!, longitude!!))
-                }
-                placeTitle.text = title
-                placeDescription.text = content
+                map.controller.animateTo(GeoPoint(latitude, longitude))
             }
         }
     }

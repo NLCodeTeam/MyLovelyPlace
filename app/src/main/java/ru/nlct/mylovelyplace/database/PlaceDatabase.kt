@@ -3,8 +3,8 @@ package ru.nlct.mylovelyplace.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import ru.nlct.mylovelyplace.DatabaseConst.DATABASE_VERSION
-import ru.nlct.mylovelyplace.database.dao.Place
-import ru.nlct.mylovelyplace.database.entity.PlaceEntity
+import ru.nlct.mylovelyplace.database.dao.PlaceDAO
+import ru.nlct.mylovelyplace.domain.home.entity.Place
 
 /**
  * Place database - объявление базы данных
@@ -12,7 +12,7 @@ import ru.nlct.mylovelyplace.database.entity.PlaceEntity
  * @author Marianna Sabanchieva
  */
 
-@Database(entities = [PlaceEntity::class], version = DATABASE_VERSION, exportSchema = false)
+@Database(entities = [Place::class], version = DATABASE_VERSION, exportSchema = false)
 abstract class PlaceDatabase : RoomDatabase() {
-    abstract fun place(): Place
+    abstract fun place(): PlaceDAO
 }

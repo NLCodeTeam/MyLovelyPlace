@@ -1,6 +1,6 @@
 package ru.nlct.mylovelyplace.domain.home.usecases
 
-import ru.nlct.mylovelyplace.database.entity.PlaceEntity
+import ru.nlct.mylovelyplace.domain.home.entity.Place
 import ru.nlct.mylovelyplace.domain.home.repository.PlaceRepository
 import javax.inject.Inject
 
@@ -11,11 +11,11 @@ import javax.inject.Inject
  */
 
 interface GetPlaceUseCase {
-    fun getPlaces(): List<PlaceEntity>
-    fun getPlaceById(id: Long): PlaceEntity
+    fun getPlaces(): List<Place>
+    fun getPlaceById(id: Long): Place
 }
 
 class GetPlaceUseCaseImpl @Inject constructor(private val placeRepository: PlaceRepository): GetPlaceUseCase {
-    override fun getPlaces(): List<PlaceEntity> = placeRepository.getPlaces()
-    override fun getPlaceById(id: Long): PlaceEntity = placeRepository.getPlaceById(id)
+    override fun getPlaces(): List<Place> = placeRepository.getPlaces()
+    override fun getPlaceById(id: Long): Place = placeRepository.getPlaceById(id)
 }
