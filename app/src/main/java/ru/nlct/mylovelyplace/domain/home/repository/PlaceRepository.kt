@@ -1,6 +1,6 @@
 package ru.nlct.mylovelyplace.domain.home.repository
 
-import ru.nlct.mylovelyplace.domain.home.entity.Place
+import ru.nlct.mylovelyplace.domain.models.Place
 
 /**
  * Репозиторий для списка предустановленных мест их детализации

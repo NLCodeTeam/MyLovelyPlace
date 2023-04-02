@@ -20,7 +20,7 @@ import ru.nlct.mylovelyplace.DatabaseConst.ElbrusLocation
 import ru.nlct.mylovelyplace.DatabaseConst.ZOOM
 import ru.nlct.mylovelyplace.DatabaseConst.ZOOM_TO
 import ru.nlct.mylovelyplace.R
-import ru.nlct.mylovelyplace.domain.home.entity.Place
+import ru.nlct.mylovelyplace.domain.models.Place
 import ru.nlct.mylovelyplace.databinding.FragmentHomeBinding
 import ru.nlct.mylovelyplace.presentation.ui.home.adapters.SliderAdapter
 import ru.nlct.mylovelyplace.presentation.ui.home.cardslider.CardSliderLayoutManager

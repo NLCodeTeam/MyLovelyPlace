@@ -1,4 +1,4 @@
-package ru.nlct.mylovelyplace.domain.home.entity
+package ru.nlct.mylovelyplace.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -16,8 +16,8 @@ import androidx.room.PrimaryKey
  * @author Marianna Sabanchieva
  */
 
-@Entity(tableName = Place.Schema.TABLE_NAME)
-data class Place(
+@Entity(tableName = PlaceEntity.Schema.TABLE_NAME)
+data class PlaceEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = Schema.ID) val id: Long = 0,
     @ColumnInfo(name = Schema.TITLE) val title: String = "",

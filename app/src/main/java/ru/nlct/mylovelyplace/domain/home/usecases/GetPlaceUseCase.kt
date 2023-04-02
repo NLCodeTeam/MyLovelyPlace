@@ -1,6 +1,6 @@
 package ru.nlct.mylovelyplace.domain.home.usecases
 
-import ru.nlct.mylovelyplace.domain.home.entity.Place
+import ru.nlct.mylovelyplace.domain.models.Place
 import ru.nlct.mylovelyplace.domain.home.repository.PlaceRepository
 import javax.inject.Inject
 
