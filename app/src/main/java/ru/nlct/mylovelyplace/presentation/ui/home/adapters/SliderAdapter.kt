@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.nlct.mylovelyplace.R
-import ru.nlct.mylovelyplace.domain.home.entity.Place
+import ru.nlct.mylovelyplace.domain.models.Place
 
 /**
  * Slider adapter - адаптер для списка предустановленных мест

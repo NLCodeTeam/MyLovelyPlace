@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.nlct.mylovelyplace.domain.home.entity.Place
+import ru.nlct.mylovelyplace.domain.models.Place
 import ru.nlct.mylovelyplace.domain.home.usecases.GetPlaceUseCaseImpl
 import javax.inject.Inject
 
