@@ -1,10 +1,10 @@
-package ru.nlct.mylovelyplace.database
+package ru.nlct.mylovelyplace.data.home.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import ru.nlct.mylovelyplace.DatabaseConst.DATABASE_VERSION
-import ru.nlct.mylovelyplace.database.dao.PlaceDAO
-import ru.nlct.mylovelyplace.database.entity.PlaceEntity
+import ru.nlct.mylovelyplace.core.DatabaseConst.DATABASE_VERSION
+import ru.nlct.mylovelyplace.data.home.database.dao.PlaceDAO
+import ru.nlct.mylovelyplace.data.home.database.entity.PlaceEntity
 
 /**
  * Place database - объявление базы данных

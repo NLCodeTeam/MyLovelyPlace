@@ -11,4 +11,8 @@ import ru.nlct.mylovelyplace.domain.models.Place
 interface PlaceRepository {
     fun getPlaces(): List<Place>
     fun getPlaceById(id: Long): Place
+
+    suspend fun getPlacesFromRemote(): List<Place>
+
+    suspend fun getPlacesFromRemoteById(Id: Long): Place
 }

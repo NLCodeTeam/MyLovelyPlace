@@ -1,4 +1,4 @@
-package ru.nlct.mylovelyplace.database.entity
+package ru.nlct.mylovelyplace.data.home.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
