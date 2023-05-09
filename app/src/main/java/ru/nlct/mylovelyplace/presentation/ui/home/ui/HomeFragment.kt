@@ -16,9 +16,9 @@ import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 import ru.nlct.mylovelyplace.BaseFragment
-import ru.nlct.mylovelyplace.DatabaseConst.ElbrusLocation
-import ru.nlct.mylovelyplace.DatabaseConst.ZOOM
-import ru.nlct.mylovelyplace.DatabaseConst.ZOOM_TO
+import ru.nlct.mylovelyplace.core.DatabaseConst.ElbrusLocation
+import ru.nlct.mylovelyplace.core.DatabaseConst.ZOOM
+import ru.nlct.mylovelyplace.core.DatabaseConst.ZOOM_TO
 import ru.nlct.mylovelyplace.R
 import ru.nlct.mylovelyplace.domain.models.Place
 import ru.nlct.mylovelyplace.databinding.FragmentHomeBinding

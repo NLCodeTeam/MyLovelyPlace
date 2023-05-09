@@ -1,8 +1,8 @@
-package ru.nlct.mylovelyplace.database.dao
+package ru.nlct.mylovelyplace.data.home.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import ru.nlct.mylovelyplace.database.entity.PlaceEntity
+import ru.nlct.mylovelyplace.data.home.database.entity.PlaceEntity
 
 /**
  * Place - DAO для базы данных, описывающая запросы к базе

@@ -1,4 +1,4 @@
-package ru.nlct.mylovelyplace
+package ru.nlct.mylovelyplace.core
 
 import org.osmdroid.util.GeoPoint
 
