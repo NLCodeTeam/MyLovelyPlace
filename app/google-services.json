@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "617636356975",
+    "project_id": "mylovelyplace-61145",
+    "storage_bucket": "mylovelyplace-61145.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617636356975:android:b4cc1da1af7ff82f46be9a",
+        "android_client_info": {
+          "package_name": "ru.nct.mylovelyplace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABf20SlPBBJdLcAYb9Y9wfmkWHNhMYwAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617636356975:android:301760e20ecd109546be9a",
+        "android_client_info": {
+          "package_name": "ru.nlct.mylovelyplace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABf20SlPBBJdLcAYb9Y9wfmkWHNhMYwAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
